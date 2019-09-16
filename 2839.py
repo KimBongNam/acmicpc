@@ -1,0 +1,1 @@
+weight = int(input("we"))
