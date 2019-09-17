@@ -11,4 +11,3 @@ for i in range(num):
         answer = i
         break
 print(answer)
-    
