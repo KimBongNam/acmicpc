@@ -20,7 +20,3 @@ sum = 0
 for _ in dp[num]:
     sum += _
 print(sum%1000000000)
-print(dp[1])
-print(dp[2])
-print(dp[3])
-print(dp[4])
