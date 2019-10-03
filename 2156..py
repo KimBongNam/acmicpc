@@ -13,4 +13,3 @@ for i in range(num):
         dp.append(max(dp[i],dp[i-1] + wine[i],dp[i-2]+wine[i-1]+wine[i]))
     
 print(dp[num])
-print(dp)
