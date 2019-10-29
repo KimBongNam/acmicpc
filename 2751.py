@@ -19,3 +19,6 @@ inp = list(map(int,sys.stdin.readlines()))
 lsst = binary_search(inp[1:])
 for i in lsst:
     print(i)
+
+
+# print(*sorted(p[1:]), sep='\n')
