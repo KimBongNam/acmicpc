@@ -1,25 +1,24 @@
-def dfs(admat, start, lst, sum):
-    lst.append(start)
-    print("!!!")
-    for j in range(1,len(admat)):
-        print("@@@")
-        if admat[start][j] == 1 and j not in lst:
-            sum += 1
-            lst = dfs(admat,j,lst,sum)
-            
-    return sum
-
 import sys
-
-node, edge = map(int,input().split())
-ad_mat = [[0]*(node+1) for i in range(node+1)]
+sys.setrecursionlimit(10000)
+nodes, edges = map(int,input().split())
+admat = [[0]* (nodes+1) for i in range(nodes+1)]
 inp = sys.stdin.readlines()
-lst = []
-for i in inp:
-    lst.append(list(map(int,i.split())))
+visited = [0 for i in range(nodes+1)]
+for i in range(edges):
+    x, y = map(int, inp[i].split())
+    admat[x][y] = 1
+    admat[y][x] = 1
 
-for i in range(edge):
-    ad_mat[lst[i][0]][lst[i][1]] = 1
-    ad_mat[lst[i][1]][lst[i][0]] = 1
+def dfs(start):
+    visited[start] = 1
+    for i in range(1,nodes+1):
+        if admat[start][i] == 1 and visited[i] == 0:
+            dfs(i)
 
-print(dfs(ad_mat,1,[],0))
+t = 0
+for i in range(1,nodes+1):
+    if visited[i] == 0:
+        t += 1
+        dfs(i)
+
+print(t)
