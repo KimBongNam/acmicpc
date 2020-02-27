@@ -7,16 +7,16 @@ Alst.sort()
 for i in Blst:
     low = 0
     high = len(Alst)-1
-    find = False
-    while low <= high and not find:
+    while low <= high:
         mid = (low + high) // 2
         if Alst[mid] > i:
-            low += 1
+            high = mid - 1
         elif Alst[mid] < i:
-            high -= 1
+            low = mid + 1
         else:
-            print(1)
-            find = True
-            
-    if not find:
+            low = high+1
+    
+    if Alst[mid] == i:
+        print(1)
+    else:
         print(0)
