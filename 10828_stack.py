@@ -1,8 +1,9 @@
+import sys
 stack = []
 num = int(input())
 
 for i in range(num):
-   order =  input()
+   order =  sys.stdin.readline().strip()
    order_l = order.split(" ")
    if len(order_l) == 2:
       if order_l[0] == 'push':
