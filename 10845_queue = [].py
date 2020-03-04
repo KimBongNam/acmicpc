@@ -1,9 +1,9 @@
+import sys
 queue = []
 num = int(input())
 
 for i in range(num):
-   order =  input()
-   order_l = order.split(" ")
+   order_l = sys.stdin.readline().split()
    if len(order_l) == 2:
       if order_l[0] == 'push':
          queue.append(order_l[1])

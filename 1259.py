@@ -1,14 +1,23 @@
 import sys
-lst = list(map(str, sys.stdin.readlines()))
+from collections import deque
 
-def pelindrome(string):
-    print(string)
-    if len(string) == 0 or len(string) == 1:
+val = 1
+
+def pelindrome(lst):
+    lst = deque(lst)
+    if len(lst) < 2:
         return 'yes'
-    elif string[0] == string[-2]:
-        return pelindrome(string[1:-2])
     else:
-        return 'no'
-for i in lst[:-1]:
-    ans = pelindrome(i)
+        if lst.popleft() == lst.pop():
+            return pelindrome(lst)
+        else:
+            return 'no'
+
+while val != 0:
+    val = sys.stdin.readline().strip()
+    if val=='0':
+        break
+    lst = [i for i in val]
+    ans = pelindrome(lst)
     print(ans)
+    
