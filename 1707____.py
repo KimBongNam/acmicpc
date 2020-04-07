@@ -1,40 +1,36 @@
 import sys
-def dfs(num, visited,a , b,p):
-    for i in graph[num]:
-        if i not in visited:
-            if p == 1:
-                visited.append(i)
-                a.add(i)
-                dfs(i, visited,a ,b,0)
-            else:
-                visited.append(i)
-                b.add(i)
-                dfs(i,visited,a,b,1)
+K = int(input())
 
-
-def dfsall(node, visited):
-    a = set()
-    b = set()
-    for k in range(1,node+1):
-        if k not in visited:
-            dfs(k, visited, a, b,0)
-    return a,b
-
-
-num = int(input())
-
-for i in range(num):
-    nodes, edges = map(int, input().split())
-    graph = [[] for _ in range(nodes+1)]
-    for j in range(edges):
-        x,y = map(int, sys.stdin.readline().split())
-        graph[x].append(y)
-        graph[y].append(x)
-    a,b = dfsall(nodes,[])
-
-    print("YES" if len(a&b)==0 else "NO")
+for _ in range(K):
+    V, E = map(int, input().split())
+    adj = [[0]*(V+1) for _ in range(V+1)]
+    for __ in range(E):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a][b] = 1
+        adj[b][a] = 1
     
 
-
-    
-    
+    visited_a = set([1])
+    visited_b = set()
+    queue = []
+    for i in range(1,V+1):
+        if adj[1][i] == 1:
+            queue.append(i)
+            visited_b.add(i)
+    a = 1
+    while queue:
+        start = a
+        a = queue.pop()
+        for i in range(1, V+1):
+            if adj[a][i] == 1 and i != start:
+                if start in visited_a:
+                    visited_b.add(i)
+                elif start in visited_b:
+                    visited_a.add(i)
+                queue.append(i)
+            if len(visited_a) + len(visited_b) != len(visited_a.union(visited_b)):
+                break
+    if len(visited_a) + len(visited_b) != len(visited_a.union(visited_b)):
+        print("NO")
+    else:
+        print("YES")
