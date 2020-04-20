@@ -1,10 +1,10 @@
 import sys
 import heapq
 
-
 T = int(input())
+
 for _ in range(T):
-    Q = int(input())
+    Q = int(sys.stdin.readline().strip())
     lst = []
     for __ in range(Q):
         command = sys.stdin.readline().split()
@@ -15,10 +15,8 @@ for _ in range(T):
                 if command[1] == '-1':
                     heapq.heappop(lst)
                 else:
-                    lst.pop()
-                    heapq.heapify(lst)
-        
+                    lst.pop(lst.index(heapq.nlargest(1, lst)[0]))
     if len(lst)==0:
         print("EMPTY")
     else:
-        print(max(lst), min(lst))
+        print(heapq.nlargest(1,lst)[0], lst[0])
